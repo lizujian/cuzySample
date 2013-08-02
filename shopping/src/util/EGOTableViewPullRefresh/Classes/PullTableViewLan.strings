@@ -1,0 +1,19 @@
+/*
+ * Created by JetBrains AppCode.
+ * User: nick
+ * Date: 12-12-13
+ * Time: 下午2:55
+ */
+
+
+"Release to refresh..." = "松开可以更新...";
+"Pull down to refresh..." = "下拉可以更新...";
+"Loading..." = "正在加载...";
+"Updated %ld minute ago" = "上次更新: %ld 分钟前";
+"Updated %ld minutes ago" = "上次更新: %ld 分钟前";
+"Updated %ld hour ago" = "上次更新: %ld 小时前";
+"Updated %ld hours ago" = "上次更新: %ld 小时前";
+"Updated %ld day ago" = "上次更新: %ld 天前";
+"Updated %ld days ago" = "上次更新: %ld 天前";
+"Release to load more..." = "松开加载更多...";
+"Pull up to load more..." = "上拉加载更多...";

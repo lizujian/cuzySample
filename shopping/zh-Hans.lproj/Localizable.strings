@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  shopping
+
+  Created by LiZujian on 13-8-1.
+  Copyright (c) 2013年 LiZujian. All rights reserved.
+*/
+
+"all" = "全部";
+"clothing" = "衣服";
+"shoes" = "鞋子";
+"bag" = "包包";
+"beauties" = "美妆";
+"home" = "家居";
+"accessories" = "首饰";
+"food" = "美食";
+"other" = "其他";
+"choice" = "种类";
