@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "CuzyAdSDK.h"
+
+typedef enum AuthorizeState {
+    CuzyAuthorizeStateNone = 0,
+    CuzyAuthorizeStateAction = 1,//授权中
+    CuzyAuthorizeStateFail = 2,//授权失败
+    CuzyAuthorizeStateSucc = 3,//授权成功。
+    }CuzyAuthorizeState;
 typedef void (^AuthorizeBlock)(void);
 
 @protocol AuthorizeManagerDelegate <NSObject>

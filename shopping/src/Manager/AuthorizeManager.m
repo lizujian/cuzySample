@@ -13,11 +13,13 @@
     AuthorizeBlock faildBlock;
 }
 @property (nonatomic, assign) id<AuthorizeManagerDelegate> delegate;
+@property (nonatomic, assign) CuzyAuthorizeState state;
 @end
 @implementation AuthorizeManager
 DEF_SINGLETON(AuthorizeManager)
 @synthesize isAuthorized = _isAuthorized;
 @synthesize delegate = _delegate;
+@synthesize state = _state;
 
 -(void)dealloc
 {
@@ -29,11 +31,13 @@ DEF_SINGLETON(AuthorizeManager)
     self = [super init];
     if (self) {
         _isAuthorized = NO;
+        _state = CuzyAuthorizeStateNone;
     }
     return self;
 }
 -(void)authorize
 {
+    _state = CuzyAuthorizeStateAction;
     [[CuzyAdSDK sharedAdSDK] registerAppWithAppKey:@"200045" 	andAppSecret:@"07b1c45b6f236ab24805dc4e60ef8b16"];
     [[CuzyAdSDK sharedAdSDK] setRawItemPicSize:@"220x220"];
     [[CuzyAdSDK sharedAdSDK] setDelegate:self];
@@ -42,6 +46,8 @@ DEF_SINGLETON(AuthorizeManager)
 -(void)registerAppFailed
 {
     NSLog(@"fail");
+    _state = CuzyAuthorizeStateFail;
+    _isAuthorized = NO;
     if (faildBlock != nil) {
         faildBlock();
     }
@@ -53,6 +59,7 @@ DEF_SINGLETON(AuthorizeManager)
 -(void)registerAppSucceed
 {
     NSLog(@"succ");
+    _state = CuzyAuthorizeStateFail;
     _isAuthorized = YES;
     if (successBlock != nil) {
         successBlock();
@@ -75,7 +82,11 @@ DEF_SINGLETON(AuthorizeManager)
     
     [faildBlock release];
     faildBlock = [failBlock copy];
-    [self authorize];
+    if (_state == CuzyAuthorizeStateAction) {
+        return;
+    }
+    else
+        [self authorize];
 }
 
 - (void)releaseBlocksOnMainThread
